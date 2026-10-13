@@ -121,6 +121,7 @@ function Tiempo(anio, mes, dia, hora, minuto, segundo) {
 }
 
 // ---------------- EJEMPLOS ----------------
+/*
 const t1 = new Tiempo(2024, 2, 29, 23, 30, 45);
 const t2 = new Tiempo(2025, 12, 31, 8, 15, 0);
 const hoy = new Tiempo(0, 0, 0, 0, 0, 0);
@@ -141,3 +142,8 @@ console.log("¿t1 == t2?", t1.esIgual(t2));
 
 t1.sumaHora(new Tiempo(2000, 1, 1, 2, 0, 0)); // suma 2 horas
 console.log("t1 + 2 horas:", t1.getFechaCompleta(), t1.getHoraCompleta());
+*/
+const t1 = new Tiempo(2029, 2, 28, 23, 59, 59);
+const t2 = new Tiempo(0,0,0,0,0,1);
+t1.sumaHora(t2);
+console.log(t1);
