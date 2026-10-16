@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda - Página 1</title>
+</head>
+<body>
+    <h1>Mi Tienda Online</h1>
+    <p>Añade productos a tu carrito (abre la consola con F12 para ver los resultados).</p>
+
+    <!-- Formulario de compra -->
+    <div>
+        <label for="cantidad">Cantidad:</label><br>
+        <input type="text" id="cantidad"><br><br>
+
+        <label for="descripcion">Descripción del producto:</label><br>
+        <input type="text" id="descripcion"><br><br>
+
+        <!-- Botón para añadir producto -->
+        <button id="btnComprar" onclick="comprarProducto()">Comprar producto</button>
+        
+        <!-- Botón para ver el carrito -->
+        <button id="btnVerCarrito" onclick="verCarrito()">Ver carrito</button>
+    </div>
+
+    <br><hr>
+    <!-- Enlace para cambiar de página y comprobar la persistencia -->
+    <p><a href="index2.html">Ir a la Página 2 (Comprobar persistencia)</a></p>
+
+    <!-- Enlazamos el archivo JS -->
+    <script src="codigo.js"></script>
+</body>
+</html>
