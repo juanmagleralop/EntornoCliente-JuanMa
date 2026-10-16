@@ -157,8 +157,10 @@ console.log(
   `Cuenta con más dinero: ${cuentaSaldoMaximo.nombreCliente} ${cuentaSaldoMaximo.numeroCuenta} 
   ${cuentaSaldoMaximo.interes} ${cuentaSaldoMaximo.saldo}`,
 );
-console.log(`El saldo total de las cuentas es: ${saldoTotal} repartido en ${totalCuentas} cuentas` );
-var mediaBanco = saldoTotal/totalCuentas;
+console.log(
+  `El saldo total de las cuentas es: ${saldoTotal} repartido en ${totalCuentas} cuentas`,
+);
+var mediaBanco = saldoTotal / totalCuentas;
 console.log(`La media de saldo en el banco es: ${mediaBanco}`);
 
 /*
@@ -171,3 +173,96 @@ bancon.sort(a,b) => b.saldo - a.saldo;
 console.log(banco[0])
 */
 
+// EXPLICACIONES
+
+// SE PUEDEN CREAR FUNCIONES ANONIMAS
+/*
+const rectangulo = class {
+
+  constructor (altura,largo){
+    this.altura = altura;
+    this.largo = largo;
+  }
+}
+  PARA LOS ATRIBUTOS PRIVADOS
+  SE AÑADE UNA ALMOHADILLA DELANTE AL ATRIBUTO, ADEMAS HAY QUE AÑADIRLO ANTES
+  EJEMPLO:
+  class Rectangulo{
+    #altura;
+    constructor(altura){
+      this.#altura;
+    }
+  }
+
+  HERENCIA
+  class Animal {
+      hacerSonido() {
+          console.log("El animal hace un sonido");
+      }
+  }
+
+  class Perro extends Animal {
+      hacerSonido() {
+          console.log("¡Guau, guau!");
+      }
+  }
+
+  const animal = new Animal();
+  const perro = new Perro();
+
+  animal.hacerSonido(); // El animal hace un sonido
+  perro.hacerSonido();  // ¡Guau, guau!
+
+  USO DE SUPER PARA HERENCIAS
+  class Animal {
+    constructor(nombre) {
+        this.nombre = nombre;
+    }
+
+    presentarse() {
+        console.log(`Soy un animal y me llamo ${this.nombre}`);
+    }
+}
+
+class Perro extends Animal {
+    constructor(nombre, raza) {
+        super(nombre);
+        this.raza = raza;
+    }
+
+    // Override: sobrescribimos el método del padre
+    presentarse() {
+        console.log(`Soy un perro, me llamo ${this.nombre} y soy un ${this.raza}`);
+    }
+}
+
+const perro1 = new Perro("Toby", "Labrador");
+
+perro1.presentarse();
+*/
+
+class Persona{
+  constructor(dni, nombre, apellidos){
+    this.dni = dni;
+    this.nombre = nombre;
+    this.apellidos = apellidos;
+  }
+
+  verNombreCompleto(){
+    return `${this.dni} - ${this.nombre} - ${this.apellidos}`;
+  }
+}
+
+class Alumno extends Persona{
+  constructor(dni,nombre,apellidos, numAlumno){
+    super(dni,nombre,apellidos);
+    this.numAlumno = numAlumno;
+  }
+
+  mostrarAlumno(){
+    return this.verNombreCompleto() + " - " + this.numAlumno;
+  }
+}
+
+a1 = new Alumno("32424A", "Juan", "Aguilera", 2);
+console.log(a1.mostrarAlumno());
