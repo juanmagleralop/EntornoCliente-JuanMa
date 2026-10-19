@@ -1,12 +1,20 @@
 class Carta {
-  constructor(numero, palo) {
-    this.numero = numero;
-    this.palo = palo;
+  constructor(numero = 1, palo = "c") {
+    if (numero instanceof Carta) {
+      // CONSTRUCTOR COPIA
+      this.numero = numero.numero;
+      this.palo = numero.palo;
+    } else {
+      // CONSTRUCTOR NORMAL O POR DEFECTO
+      this.numero = numero;
+      this.palo = palo;
+    }
   }
 
   get getNumeroCarta() {
     return this.numero;
   }
+
   get getPaloCarta() {
     return this.palo;
   }
@@ -56,26 +64,23 @@ class Carta {
   }
 
   comparar(carta) {
-    // ESTO ME PERMITE DARLE CIERTOS VALORES LOS PALOS Y ASI LUEGO PODER
-    // HACER UNA COMPARACIÓN MUCHO MÁS SENCILLA
     const ordenPalos = {
-      t: 4, // Tréboles
-      r: 3, // Rombos
-      p: 2, // Picas
-      c: 1, // Corazones
+      t: 4,
+      r: 3,
+      p: 2,
+      c: 1,
     };
 
-    let resultado; // YO HE USADO ESTA VARIABLE PARA DEVOLVER -1 0 1
+    let resultado;
 
     if (this.numero > carta.numero) {
       resultado = 1;
     } else if (this.numero < carta.numero) {
       resultado = -1;
     } else {
-      const paloActual = ordenPalos[this.palo.toLowerCase()]; // ESTO ME DA EL VALOR DEL PALO ACTUAL
-      const paloRecibido = ordenPalos[carta.palo.toLowerCase()]; // ESTO ME DA EL VALOR DEL PALO COMPARADO
+      const paloActual = ordenPalos[this.palo.toLowerCase()];
+      const paloRecibido = ordenPalos[carta.palo.toLowerCase()];
 
-      // AHORA QUE TENGO NUMEROS COMO VALORES PUEDO COMPARAR MAS FACILMENTE
       if (paloActual > paloRecibido) {
         resultado = 1;
       } else if (paloActual < paloRecibido) {
@@ -101,6 +106,10 @@ class Carta {
 carta1 = new Carta(1, "p");
 carta2 = new Carta(3, "t");
 
+// NUEVAS CARTAS (COPIAS)
+carta3 = new Carta(carta1);
+carta4 = new Carta(carta2);
+
 // EJEMPLOS
 
 // MUESTRO LA CARTA 1 PARA LUEGO MODIFICAR SUS VALORES Y VOLVER A MOSTRAR LOS NUEVOS VALORES
@@ -112,9 +121,13 @@ carta1.mostrarCarta();
 // MUESTRO LA CARTA 2
 carta2.mostrarCarta();
 
+// MUESTRO LAS COPIAS
+carta3.mostrarCarta();
+carta4.mostrarCarta();
+
 // COMPARO CARTAS (CARTA ACTUAL GANA)
 console.log("Resultado Comparación: ");
-carta1.comparar(carta2)
+carta1.comparar(carta2);
 
 // EMPATE ENTRE CARTAS
 carta1.setNumeroCarta = 3;
