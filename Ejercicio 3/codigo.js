@@ -1,15 +1,17 @@
 class Carta {
   constructor(numero = 1, palo = "c") {
-    if (numero instanceof Carta) {
-      // CONSTRUCTOR COPIA
-      this.numero = numero.numero;
-      this.palo = numero.palo;
-    } else {
-      // CONSTRUCTOR NORMAL O POR DEFECTO
-      this.numero = numero;
-      this.palo = palo;
-    }
+  if (numero instanceof Carta) {
+    // CONSTRUCTOR COPIA
+    comprobarCarta(numero.numero, numero.palo);
+    this.numero = numero.numero;
+    this.palo = numero.palo;
+  } else {
+    // CONSTRUCTOR NORMAL O POR DEFECTO
+    comprobarCarta(numero, palo);
+    this.numero = numero;
+    this.palo = palo;
   }
+}
 
   get getNumeroCarta() {
     return this.numero;
@@ -20,19 +22,11 @@ class Carta {
   }
 
   set setNumeroCarta(numero) {
-    if (numero < 1 || numero > 13) {
-      console.log("El número debe estar entre 1 y 13");
-    } else {
-      this.numero = numero;
-    }
+    this.numero = numero;
   }
 
   set setPaloCarta(palo) {
-    if (palo != "c" && palo != "p" && palo != "r" && palo != "t") {
-      console.log("El palo debe ser: corazones, picas, rombos y tréboles");
-    } else {
-      this.palo = palo;
-    }
+    this.palo = palo;
   }
 
   mostrarCarta() {
@@ -101,38 +95,62 @@ class Carta {
     return resultado;
   }
 }
+class ExcepcionesCarta extends Error {
+  constructor(message) {
+    super(message);
+  }
+}
 
-// CREO LAS CARTAS APARTIR DE LA CLASE CARTA
-carta1 = new Carta(1, "p");
-carta2 = new Carta(3, "t");
+function comprobarCarta(numero, palo) {
+  const palos = ["t", "r", "p", "c"];
+  if (numero < 1 || numero > 13) {
+    throw new ExcepcionesCarta(
+      "El número de la carta debe estar entre el 1 y el 13",
+    );
+  }
+  if (!palos.includes(palo)) {
+    throw new ExcepcionesCarta("El palo debe ser t, r, p o c");
+  }
+}
+try {
+  // CREO LAS CARTAS A PARTIR DE LA CLASE CARTA
+  carta1 = new Carta(1, "p");
+  carta2 = new Carta(3, "t");
 
-// NUEVAS CARTAS (COPIAS)
-carta3 = new Carta(carta1);
-carta4 = new Carta(carta2);
+  // NUEVAS CARTAS (COPIAS)
+  carta3 = new Carta(carta1);
+  carta4 = new Carta(carta2);
 
-// EJEMPLOS
+  // MUESTRO LA CARTA 1 Y MODIFICO SUS VALORES
+  carta1.mostrarCarta();
+  carta1.setNumeroCarta = 6;
+  carta1.setPaloCarta = "t";
+  carta1.mostrarCarta();
 
-// MUESTRO LA CARTA 1 PARA LUEGO MODIFICAR SUS VALORES Y VOLVER A MOSTRAR LOS NUEVOS VALORES
-carta1.mostrarCarta();
-carta1.setNumeroCarta = 6;
-carta1.setPaloCarta = "t";
-carta1.mostrarCarta();
+  // MUESTRO LA CARTA 2
+  carta2.mostrarCarta();
 
-// MUESTRO LA CARTA 2
-carta2.mostrarCarta();
+  // MUESTRO LAS COPIAS
+  carta3.mostrarCarta();
+  carta4.mostrarCarta();
 
-// MUESTRO LAS COPIAS
-carta3.mostrarCarta();
-carta4.mostrarCarta();
+  // COMPARO CARTAS (CARTA ACTUAL GANA)
+  console.log("Resultado Comparación: ");
+  carta1.comparar(carta2);
 
-// COMPARO CARTAS (CARTA ACTUAL GANA)
-console.log("Resultado Comparación: ");
-carta1.comparar(carta2);
+  // EMPATE ENTRE CARTAS
+  carta1.setNumeroCarta = 3;
+  carta1.comparar(carta2);
 
-// EMPATE ENTRE CARTAS
-carta1.setNumeroCarta = 3;
-carta1.comparar(carta2);
+  // PIERDE LA ACTUAL
+  carta1.setPaloCarta = "p";
+  carta1.comparar(carta2);
 
-// PIERDE LA ACTUAL
-carta1.setPaloCarta = "p";
-carta1.comparar(carta2);
+  // PROBAR EXCEPCIÓN
+  carta3 = new Carta(-4, "p");
+  carta3.mostrarCarta();
+
+  
+} catch (error) {
+  console.log("ERROR: " + error.message);
+}
