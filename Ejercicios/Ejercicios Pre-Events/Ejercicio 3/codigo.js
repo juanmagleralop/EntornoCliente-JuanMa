@@ -1,17 +1,101 @@
-class Carta {
-  constructor(numero = 1, palo = "c") {
-  if (numero instanceof Carta) {
-    // CONSTRUCTOR COPIA
-    comprobarCarta(numero.numero, numero.palo);
-    this.numero = numero.numero;
-    this.palo = numero.palo;
-  } else {
-    // CONSTRUCTOR NORMAL O POR DEFECTO
-    comprobarCarta(numero, palo);
-    this.numero = numero;
-    this.palo = palo;
+class Baraja {
+  constructor(tipoBaraja = "francesa") {
+    this.tipoBaraja = tipoBaraja;
+    this.cartas = [];
+    let palos;
+    let numeros;
+
+    if (tipoBaraja.toLowerCase() === "española") {
+      palos = ["o", "c", "e", "b"];
+      numeros = [1, 2, 3, 4, 5, 6, 7, 10, 11, 12];
+    } else if (tipoBaraja.toLowerCase() === "francesa") {
+      palos = ["c", "r", "p", "t"];
+      numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+    } else {
+      throw new Error("Tipo de baraja incorrecto");
+    }
+
+    for (let palo of palos) {
+      for (let numero of numeros) {
+        this.cartas.push(new Carta(numero, palo));
+      }
+    }
+  }
+
+  robar() {
+    let cartaRobada = null;
+    for (let carta of this.cartas) {
+      if (carta.isRobada === false) {
+        cartaRobada = new Carta(carta);
+        carta.setRobada = true;
+        break;
+      }
+    }
+    return cartaRobada;
+  }
+
+  numCartas() {
+    let cartasMazo = 0;
+
+    for (let carta of this.cartas) {
+      if (carta.isRobada === false) {
+        cartasMazo++;
+      }
+    }
+    return cartasMazo;
+  }
+
+  barajar() {
+    let posicion1 = Math.random(0, this.cartas.length);
+    let posicion2 = Math.random(0, this.cartas.length);
+
+    let cartaEliminada = this.cartas[posicion1];
+
+    this.cartas[posicion1] = this.cartas[posicion2];
+    this.cartas[posicion2] = cartaEliminada;
+  }
+
+  cortar() {
+    let corte = Math.random(0, this.cartas.length);
+
+    let bloque1 = [];
+    let bloque2 = [];
+
+    // Se podria usar este método array.slice(inicio, fin); esto permite extraer una parte de un array y devolverla en un nuevo array, sin modificar el array original
+    /*
+      let bloque1 = this.cartas.slice(0, corte);
+      let bloque2 = this.cartas.slice(corte);
+    */
+
+    for (let i = 0; i < corte; i++) {
+      bloque1.push(this.cartas[i]);
+    }
+
+    for (let i = bloque1.length; i < this.cartas.length; i++) {
+      bloque2.push(this.cartas[i]);
+    }
+
+    let mazoBarajado = bloque2.concat(bloque1);
+    this.cartas = mazoBarajado;
   }
 }
+
+class Carta {
+  constructor(numero = 1, palo = "c", robada) {
+    if (numero instanceof Carta) {
+      // CONSTRUCTOR COPIA
+      comprobarCarta(numero.numero, numero.palo);
+      this.numero = numero.numero;
+      this.palo = numero.palo;
+      this.robada = numero.robada;
+    } else {
+      // CONSTRUCTOR NORMAL O POR DEFECTO
+      comprobarCarta(numero, palo);
+      this.numero = numero;
+      this.palo = palo;
+      this.robada = robada ?? false;
+    }
+  }
 
   get getNumeroCarta() {
     return this.numero;
@@ -21,12 +105,20 @@ class Carta {
     return this.palo;
   }
 
+  get isRobada() {
+    return this.robada;
+  }
+
   set setNumeroCarta(numero) {
     this.numero = numero;
   }
 
   set setPaloCarta(palo) {
     this.palo = palo;
+  }
+
+  set setRobada(robada) {
+    this.robada = robada;
   }
 
   mostrarCarta() {
@@ -112,6 +204,8 @@ function comprobarCarta(numero, palo) {
     throw new ExcepcionesCarta("El palo debe ser t, r, p o c");
   }
 }
+
+/*
 try {
   // CREO LAS CARTAS A PARTIR DE LA CLASE CARTA
   carta1 = new Carta(1, "p");
@@ -149,8 +243,45 @@ try {
   // PROBAR EXCEPCIÓN
   carta3 = new Carta(-4, "p");
   carta3.mostrarCarta();
-
-  
 } catch (error) {
   console.log("ERROR: " + error.message);
 }
+
+*/
+
+let cartasRobadas = document.getElementById("cartasRobadas");
+let botonCrear = document.getElementById("crear");
+let baraja = new Baraja();
+
+botonCrear.addEventListener("click", () => {
+  let nuevaBaraja = new Baraja();
+  baraja = nuevaBaraja;
+  cartasRobadas.innerHTML = "";
+});
+
+let botonBarajar = document.getElementById("barajar");
+
+botonBarajar.addEventListener("click", () => {
+  baraja.barajar();
+});
+
+let botonCortar = document.getElementById("cortar");
+
+botonCortar.addEventListener("click", () => {
+  baraja.cortar();
+});
+
+let botonRobar = document.getElementById("robar");
+
+botonRobar.addEventListener("click", () => {
+  let cartaRobada = baraja.robar();
+
+  if (cartaRobada !== null) {
+    let imagen = document.createElement("img");
+    imagen.src =  "cartas/" + cartaRobada.getPaloCarta + "" + cartaRobada.getNumeroCarta + ".jpg";
+    imagen.width = 100;
+    cartasRobadas.appendChild(imagen);
+  } else {
+    alert("No quedan cartas en la baraja");
+  }
+});
