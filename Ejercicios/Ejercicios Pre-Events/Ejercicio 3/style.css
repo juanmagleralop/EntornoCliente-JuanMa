@@ -1,0 +1,94 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #ffffff;
+  text-align: center;
+  background: radial-gradient(circle, #2e7d4f, #134e2c);
+  padding: 30px 20px;
+}
+
+h1 {
+  font-size: 48px;
+  margin: 0 0 20px;
+  letter-spacing: 3px;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+h2 {
+  font-size: 24px;
+  margin: 30px 0 15px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+/* Mazo */
+#lomoCarta img {
+  width: 140px;
+  border-radius: 10px;
+  box-shadow: 4px 4px 0 #0b3a1f, 8px 8px 0 #0b3a1f, 0 10px 25px rgba(0, 0, 0, 0.6);
+}
+
+#numeroCartas {
+  font-size: 18px;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: inline-block;
+  padding: 8px 18px;
+  border-radius: 20px;
+  margin-top: 25px;
+}
+
+/* Zona de cartas robadas */
+#cartasRobadas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  min-height: 160px;
+  max-width: 900px;
+  margin: 0 auto 30px;
+  padding: 15px;
+  border: 2px dashed rgba(255, 255, 255, 0.3);
+  border-radius: 15px;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+#cartasRobadas img {
+  border-radius: 8px;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s;
+}
+
+#cartasRobadas img:hover {
+  transform: translateY(-10px) rotate(-3deg);
+}
+
+/* Botones */
+button {
+  font-size: 16px;
+  font-weight: bold;
+  color: #3b2a00;
+  background: linear-gradient(#ffd966, #e6a800);
+  border: none;
+  border-radius: 25px;
+  padding: 12px 25px;
+  margin: 5px;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #a07400;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+button:hover {
+  background: linear-gradient(#ffe38a, #f2b600);
+}
+
+button:active {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 #a07400;
+}

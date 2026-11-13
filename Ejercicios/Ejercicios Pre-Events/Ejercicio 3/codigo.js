@@ -46,17 +46,19 @@ class Baraja {
   }
 
   barajar() {
-    let posicion1 = Math.random(0, this.cartas.length);
-    let posicion2 = Math.random(0, this.cartas.length);
+    for (let i = 0; i < this.cartas.length; i++) {
+      let posicion1 = Math.floor(Math.random() * this.cartas.length);
+      let posicion2 = Math.floor(Math.random() * this.cartas.length);
 
-    let cartaEliminada = this.cartas[posicion1];
+      let cartaEliminada = this.cartas[posicion1];
 
-    this.cartas[posicion1] = this.cartas[posicion2];
-    this.cartas[posicion2] = cartaEliminada;
+      this.cartas[posicion1] = this.cartas[posicion2];
+      this.cartas[posicion2] = cartaEliminada;
+    }
   }
 
   cortar() {
-    let corte = Math.random(0, this.cartas.length);
+    let corte = Math.floor(Math.random() * this.cartas.length);
 
     let bloque1 = [];
     let bloque2 = [];
@@ -252,10 +254,18 @@ try {
 let cartasRobadas = document.getElementById("cartasRobadas");
 let botonCrear = document.getElementById("crear");
 let baraja = new Baraja();
+let numeroCartas = document.getElementById("numeroCartas");
+
+function mostrarNumCartas(){
+  numeroCartas.textContent = "Número de cartas: " + baraja.numCartas();
+}
+
+mostrarNumCartas();
 
 botonCrear.addEventListener("click", () => {
   let nuevaBaraja = new Baraja();
   baraja = nuevaBaraja;
+  mostrarNumCartas();
   cartasRobadas.innerHTML = "";
 });
 
@@ -278,10 +288,14 @@ botonRobar.addEventListener("click", () => {
 
   if (cartaRobada !== null) {
     let imagen = document.createElement("img");
-    imagen.src =  "cartas/" + cartaRobada.getPaloCarta + "" + cartaRobada.getNumeroCarta + ".jpg";
+    imagen.src = "cartas/" + cartaRobada.getPaloCarta + "" + cartaRobada.getNumeroCarta + ".jpg";
+    // ESTE MUESTRA DE 1 EN 1: cartasRobadas.innerHTML = "<img src='cartas/" + cartaRobada.getPaloCarta + "" + cartaRobada.getNumeroCarta + ".jpg' />";
     imagen.width = 100;
     cartasRobadas.appendChild(imagen);
+    mostrarNumCartas();
   } else {
     alert("No quedan cartas en la baraja");
   }
 });
+
+
