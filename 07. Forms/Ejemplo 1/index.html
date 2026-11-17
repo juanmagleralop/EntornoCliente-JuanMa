@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+</head>
+<body>
+    <form method="post" action="" id="formulario">
+        <label for="nombre">Nombre: 
+            <input type="text" id="campo1" name="">
+        </label>
+        <br><br>
+        <label for="sexo" id="elegirSexo">Sexo:
+            Hombre<input type="radio" id="sexo" name="sexo" value="Hombre">
+            Mujer<input type="radio" id="sexo" name="sexo" value="Mujer">
+        </label>
+        <br><br>
+        <button type="submit" id="boton">Enviar</button>
+        <br><br>
+        <label for="sexo">Otra opcion de sexo:
+            <input type="text" id="otroSexo" name="sexo">
+        </label>
+        <br><br>
+        <button type="button" id="anadirSexo">Anadir</button>
+        <br><br>
+        <label for="actividades">Actividades: 
+            <input type="checkbox" class="actividades" name="actividad1" value="Cine">Cine
+            <input type="checkbox" class="actividades" name="actividad2" value="Padel">Padel
+            <input type="checkbox" class="actividades" name="actividad3" value="Fútbol">Fútbol
+        </label>
+        <br><br>
+        <button type="button" id="anadirActividad">Anadir Actividad</button>
+    </form>
+    <script src="codigo.js"></script>
+</body>
+</html>

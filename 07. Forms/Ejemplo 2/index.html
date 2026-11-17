@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo 2</title>
+</head>
+<body>
+    <form action="" method="post" id="formulario">
+        <div id="errores">
+            
+        </div>
+        <label for="dni">DNI:
+            <input type="text" id="dni" name="dni">
+        </label>
+        <br><br>
+        <label for="nombre">Nombre:
+            <input type="text" id="nombre" name="nombre" minlength="3">
+        </label>
+        <br><br>
+        <label for="apellidos">Apellidos:
+            <input type="text" id="apellidos" name="apellidos" minlength="3">
+        </label>
+        <br><br>
+        <label for="edad">Edad:
+            <input type="number" id="edad" name="edad" min="18" max="65">
+        </label>
+        <br><br>
+        <label for="fecha">Fecha Nacimiento:
+            <input type="date" id="fecha" name="fecha">
+        </label>
+        <br><br>
+        <label for="empleado">Empleo:
+            <input type="radio" id="empleo" name="empleo" value="Directivo">Directivo
+            <input type="radio" id="empleo" name="empleo" value="Encargado">Encargado
+            <input type="radio" id="empleo" name="empleo" value="Operario">Operario
+        </label>
+        <br><br>
+        <label for="departamentos">Departamentos:
+            <input type="checkbox" class="departamentos" value="IT">IT
+            <input type="checkbox" class="departamentos" value="RH">RH
+            <input type="checkbox" class="departamentos" value="Contabilidad">Contabilidad
+        </label>
+        <br><br>
+        <button type="button" id="botonEnviar">Enviar</button>
+    </form>
+    <script src="codigo.js"></script>
+</body>
+</html>
