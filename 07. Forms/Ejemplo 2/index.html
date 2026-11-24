@@ -4,6 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ejemplo 2</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 6px 10px;
+        }
+        th {
+            background-color: #dddddd;
+        }
+    </style>
 </head>
 <body>
     <form action="" method="post" id="formulario">
@@ -44,6 +57,22 @@
         <br><br>
         <button type="button" id="botonEnviar">Enviar</button>
     </form>
+    <table>
+        <thead>
+            <tr>
+                <th>DNI</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Edad</th>
+                <th>Fecha de nacimiento</th>
+                <th>Empleo</th>
+                <th>Departamentos</th>
+            </tr>
+        </thead>
+        <tbody id="empleados">
+
+        </tbody>
+    </table>
     <script src="codigo.js"></script>
 </body>
 </html>
