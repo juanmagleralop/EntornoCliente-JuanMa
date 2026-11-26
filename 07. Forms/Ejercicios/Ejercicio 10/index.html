@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="formulario">
+        <label for="nombre">Nombre:
+            <input type="text" id="nombre" name="nombre">
+        </label>
+        <br><br>
+        <label for="apellidos">Apellidos:
+            <input type="text" id="apellidos" name="apellidos">
+        </label>
+        <br><br>
+        <label for="email">Email:
+            <input type="email" id="email" name="email">
+        </label>
+        <br><br>
+        <label for="edad">Edad:
+            <input type="number" id="edad" name="edad">
+        </label>
+        <br><br>
+        <label for="nivel">Nivel
+            <input type="radio" id="principiante" name="nivel" value="Principiante">Principiante
+            <input type="radio" id="intermedio" name="nivel" value="Intermedio">Intermedio
+            <input type="radio" id="avanzado" name="nivel" value="Avanzado">Avanzado
+        </label>
+        <br><br>
+        <label for="tecnologias">Tecnologías:
+            <input type="checkbox" id="html" name="tecnologias" value="HTML">HTML
+            <input type="checkbox" id="css" name="tecnologias" value="CSS">CSS
+            <input type="checkbox" id="javascript" name="tecnologias" value="JavaScript">JavaScript
+            <input type="checkbox" id="python" name="tecnologias" value="Python">Python
+            <input type="checkbox" id="php" name="tecnologias" value="PHP">PHP
+        </label>
+        <br><br>
+        <label for="modalidad">Modalidad:
+            <select id="modalidad">
+                <option value="pr">Presencial</option>
+                <option value="on">Online</option>
+                <option value="hi">Híbrida</option>
+            </select>
+        </label>
+        <br><br>
+        <label for="cursos">Cursos:
+            <select id="cursos" multiple>
+                <option value="js">JavaScript</option>
+                <option value="node">Node.js</option>
+                <option value="react">React</option>
+                <option value="git">Git</option>
+            </select>
+        </label>
+        <br><br>
+        <label for="Comentario">Comentario:
+            <textarea cols="50" rows="5"></textarea>
+        </label>
+        <br><br>
+        <button type="button" id="envio">Enviar</button>
+    </form>
+    <div id="cajaErrores">
+        
+    </div>
+    <script src="codigo.js"></script>
+</body>
+</html>
